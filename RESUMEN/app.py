@@ -1,4 +1,4 @@
-import os
+import os   #1
 import sys
 import webbrowser
 from datetime import datetime
@@ -12,6 +12,7 @@ import pandas as pd
 
 
 def resource_path(relative_path):
+    """ Obtiene la ruta absoluta para recursos (templates/static) compatible con PyInstaller """
     try:
         base_path = sys._MEIPASS
     except Exception:
@@ -22,7 +23,9 @@ def resource_path(relative_path):
 # =========================================================================
 # CONFIGURACIÓN GLOBAL DEL SERVIDOR Y CARPETAS
 # =========================================================================
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder=resource_path('templates'),
+            static_folder=resource_path('static'))
 CORS(app) 
 
 UPLOAD_FOLDER = "uploads"
